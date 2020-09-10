@@ -3,7 +3,6 @@ package com.donsmart.notesapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.widget.Toast;
 public class MainActivity2 extends AppCompatActivity {
 
     EditText etTitle,etNotes;
-    boolean pressedBefore = false;
 
 
     @Override
@@ -28,6 +26,7 @@ public class MainActivity2 extends AppCompatActivity {
         etTitle = findViewById(R.id.etTitle);
         etNotes = findViewById(R.id.etNotes);
 
+
         Intent intent = getIntent();
 
         String t = intent.getStringExtra("edit_title");
@@ -35,46 +34,6 @@ public class MainActivity2 extends AppCompatActivity {
 
         etTitle.setText(t);
         etNotes.setText(n);
-
-
-
-        etTitle.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //MainActivity.
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-        etNotes.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
-
-
-
-
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setIcon(R.drawable.note_icon);
@@ -100,7 +59,12 @@ public class MainActivity2 extends AppCompatActivity {
 
         if (item.getItemId() == R.id.saveNote)
         {
-            onBackPressed();
+            Intent intent = new Intent();
+            intent.putExtra("title", etTitle.getText().toString());
+            intent.putExtra("note", etNotes.getText().toString());
+            setResult(RESULT_OK, intent);
+            finish();
+
         }
 
         return super.onOptionsItemSelected(item);
@@ -109,7 +73,14 @@ public class MainActivity2 extends AppCompatActivity {
      @Override
     public void onBackPressed() {
 
-        if (pressedBefore)
+         Intent intent = new Intent();
+         intent.putExtra("title", etTitle.getText().toString());
+         intent.putExtra("note", etNotes.getText().toString());
+         setResult(RESULT_OK, intent);
+         //pressedBefore = true;
+         finish();
+
+        /**if (pressedBefore)
         {
             Intent intent = new Intent();
             intent.putExtra("title", etTitle.getText().toString());
@@ -118,7 +89,7 @@ public class MainActivity2 extends AppCompatActivity {
             pressedBefore = true;
             finish();
         }
-         if (!pressedBefore)
+         else if (!pressedBefore)
          {
 
              Intent intent = new Intent();
@@ -128,8 +99,10 @@ public class MainActivity2 extends AppCompatActivity {
              pressedBefore = false;
              finish();
 
-             super.onBackPressed();
-         }
+         }*/
+
+         super.onBackPressed();
+         //startActivity(new Intent(MainActivity2.this,MainActivity.class));
     }
 
 }

@@ -31,7 +31,7 @@ public class RowThingsAdapter extends RecyclerView.Adapter<RowThingsAdapter.View
 
     public class ViewHolder extends RecyclerView.ViewHolder
     {
-        TextView tvTitle,tvNotes;
+        public TextView tvTitle,tvNotes;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements RowThingsAdapter.
     String edit_title;
     String edit_note;
 
-    ArrayList<RowThings> things;
+    public static ArrayList<RowThings> things;
 
     RecyclerView recyclerView;
     RecyclerView.Adapter myAdapter;
@@ -42,6 +42,8 @@ public class MainActivity extends AppCompatActivity implements RowThingsAdapter.
         recyclerView.setLayoutManager(layoutManager);
 
         things = new ArrayList<RowThings>();
+        myAdapter = new RowThingsAdapter(this,things);
+        recyclerView.setAdapter(myAdapter);
 
 
 
@@ -94,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements RowThingsAdapter.
                 {
                     Toast.makeText(this, "No title set to note", Toast.LENGTH_SHORT).show();
                     things.add(new RowThings("No title",return_note));
+                    myAdapter.notifyDataSetChanged();
 
                 }
                 else
@@ -101,15 +104,18 @@ public class MainActivity extends AppCompatActivity implements RowThingsAdapter.
                     Toast.makeText(this, "Note added successfully", Toast.LENGTH_SHORT).show();
 
                     things.add(new RowThings(return_title,return_note));
+                    myAdapter.notifyDataSetChanged();
 
                 }
 
+                //does not work
+               // myAdapter.notifyDataSetChanged();
 
             }
         }
-       myAdapter = new RowThingsAdapter(this,things);
-
-       recyclerView.setAdapter(myAdapter);
+       //myAdapter = new RowThingsAdapter(this,things);
+       //recyclerView.setAdapter(myAdapter);
+       //myAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -121,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements RowThingsAdapter.
         intent.putExtra("edit_title",edit_title);
         intent.putExtra("edit_note",edit_note);
         startActivity(intent);
-        finish();
+       // finish();
 
     }
 }
