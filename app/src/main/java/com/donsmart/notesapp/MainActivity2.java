@@ -77,32 +77,10 @@ public class MainActivity2 extends AppCompatActivity {
          intent.putExtra("title", etTitle.getText().toString());
          intent.putExtra("note", etNotes.getText().toString());
          setResult(RESULT_OK, intent);
-         //pressedBefore = true;
          finish();
 
-        /**if (pressedBefore)
-        {
-            Intent intent = new Intent();
-            intent.putExtra("title", etTitle.getText().toString());
-            intent.putExtra("note", etNotes.getText().toString());
-            setResult(RESULT_OK, intent);
-            pressedBefore = true;
-            finish();
-        }
-         else if (!pressedBefore)
-         {
-
-             Intent intent = new Intent();
-             intent.putExtra("title", etTitle.getText().toString());
-             intent.putExtra("note", etNotes.getText().toString());
-             setResult(RESULT_OK, intent);
-             pressedBefore = false;
-             finish();
-
-         }*/
 
          super.onBackPressed();
-         //startActivity(new Intent(MainActivity2.this,MainActivity.class));
     }
 
 }
